@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite both the article (preferred-citation) and this repository."
+title: "Contextual time squeeze: reproduction pipeline (isotemporal substitution and eldercare-onset event study)"
+type: software
+authors:
+  - family-names: "Kato"
+    given-names: "Haruka"
+    affiliation: "Osaka Metropolitan University"
+    orcid: "https://orcid.org/0000-0003-0831-1543"
+version: "1.0.0"
+date-released: "2026-10-30"
+license: MIT
+repository-code: "https://github.com/HarukaKato-omu/shrinking-cities-wellbeing-isotemporal-substitution"
+# identifiers:
+#   - type: doi
+#     value: "10.5281/zenodo.XXXXXXX"   # add the Zenodo DOI on release
+preferred-citation:
+  type: article
+  status: submitted
+  title: "Contextual time squeeze: Population decline and the well-being price of an hour in Japan's shrinking small and medium-sized cities"
+  journal: "Habitat International"
+  authors:
+    - family-names: "Kato"
+      given-names: "Haruka"
+      affiliation: "Osaka Metropolitan University"
+      orcid: "https://orcid.org/0000-0003-0831-1543"

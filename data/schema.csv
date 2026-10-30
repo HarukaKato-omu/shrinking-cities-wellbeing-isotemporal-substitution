@@ -1,0 +1,46 @@
+file,variable,type,unit,definition,source,used
+panel.csv,PID,integer,,Respondent identifier; one row per PID x Year,Survey on Satisfaction and Quality of Life (Cabinet Office of Japan); 2024 links partly recovered from the wave's own identifier fields,yes
+panel.csv,Year,integer,calendar year,Survey wave 2020-2025 (2025 is read for the sample flow only and excluded from every model because its time-use module differs),Survey,yes
+panel.csv,LS,integer,survey code 1-11,"Overall life satisfaction, survey code 1-11 (= 0-10 scale + 1); the scripts use LS0 = LS - 1",Survey,yes
+panel.csv,D1-D13,integer,survey code,Domain-specific satisfaction items,Survey,no
+panel.csv,Sleep_code,integer,band code,Hours of sleep on a typical day (whole hours 1-24),Survey,no
+panel.csv,Educ_code; Work_code; Child_code; Elder_code; Free_code,integer,band code,"Study, paid work, childcare, care/nursing (eldercare), free time: 1 = none, 2 = less than one hour, k >= 3 = (k - 2) whole hours",Survey,yes (S18 recodes band 2)
+panel.csv,Commute_code,integer,band code,Commuting in 15-minute bands; top code 9 = two hours or more,Survey,no
+panel.csv,House_code,integer,band code,Housework (asked from 2022 only),Survey,no
+panel.csv,Sleep_h; Educ_h; Commute_h; Work_h; Child_h; Elder_h; Free_h,float,hours/day,"Band codes converted to hours: sleep k -> k; study/work/childcare/eldercare/free 1 -> 0, 2 -> 0.5, k >= 3 -> k - 2 (top 26 -> 24); commuting (k - 1) x 0.25 (top 9 -> 2). Domains are asked independently, so the seven may sum to more than 24 h",Derived,yes
+panel.csv,House_h,float,hours/day,Housework converted as the other five-band items; 2022-2024 only,Derived,yes (S16)
+panel.csv,total_h,float,hours/day,Sum of the seven domains; the analytic sample keeps 10-26 h,Derived,yes
+panel.csv,total8_h,float,hours/day,Sum of the eight domains including housework; 2022-2024 only,Derived,yes (S16)
+panel.csv,tu_complete,0/1,,All seven time-use items answered,Derived,yes
+panel.csv,hhsize,integer,persons,Household size,Survey,yes
+panel.csv,hh_spouse; hh_child; hh_parent,0/1,,Co-residence with a spouse / a child / a parent (set to 0 for one-person households),Survey,yes
+panel.csv,hh_grandparent; hh_sibling; hh_grandchild; hh_other,0/1,,Other co-residents,Survey,no
+panel.csv,child_preschool,0/1,,Preschool child in the household (set to 0 for one-person households),Survey,yes
+panel.csv,child_school; child_hs,0/1,,School-age / high-school child in the household,Survey,no
+panel.csv,n65,integer,persons,Co-residents aged 65 and over (many missing),Survey,no
+panel.csv,emp,integer,survey code 1-9,"Employment status: 1 regular employee, 2 non-regular employee, 3 executive, 4 self-employed or family worker, 5 home-based worker, 6 student (employed), 7 student (not employed), 8 full-time homemaker, 9 not employed / other",Survey,no
+panel.csv,emp_grp,string,,"emp recoded: regular, nonregular, exec, self, homework, student (codes 6-7), nonemp (codes 8-9); missing is treated as nonemp",Derived,yes
+panel.csv,employed,0/1,,1 for codes 1-6,Derived,no
+panel.csv,edu,integer,survey code,Highest education completed,Survey,no
+panel.csv,pinc_raw; pinc,integer,band code,"Personal income band (raw, and with refusal codes set to missing); 2022-2024",Survey,yes (S3)
+panel.csv,hhinc_raw; hhinc,integer,band code,Household income band,Survey,no
+panel.csv,srh,integer,1-5,Self-rated health,Survey,yes (S2-S3)
+panel.csv,Sex,integer,,1 = male; 2 = female (used for the linkage check and Table 1),Survey,yes
+panel.csv,Age,integer,5-year band code,"1 = 15-19, 2 = 20-24, ..., 10 = 60-64, 11+ = 65 and over",Survey,yes
+panel.csv,age_grp,string,,"'15-64' or '65+'",Derived,yes
+panel.csv,city_raw,string,,Municipality of residence as reported,Survey,no
+panel.csv,CityName,string,,"Normalised municipality name in Japanese (e.g. 大阪市, 堺市, 中央区); the statutory large cities of data/large_cities.csv are matched on '<name>市'",Derived,yes
+panel.csv,CityCode-5,integer,,"5-digit municipality code; stored as a number, so leading zeros are lost (3201 = 03201) and the scripts zero-pad it on reading",e-Stat municipality code,yes
+panel.csv,CityType,string,,"Survey's own city-type code (1_large, 2_mid, 3_small)",Survey,no
+panel.csv,scale,string,,"Survey-based city size (Large / SMC); kept as scale_survey and replaced by the statutory classification",Derived,no (overwritten)
+panel.csv,Areakm2,float,km2,Municipal land area,Public municipal statistics,yes
+panel.csv,merged_flag,0/1,,"Municipality formed by merger (legacy column name Maeged_flag is accepted)",Public municipal statistics,yes
+panel.csv,metro_flag,0/1,,"Municipality inside a metropolitan area (legacy column name Metropolice_flag is accepted)",Public municipal statistics,yes
+panel.csv,pop_t; nmr_t,float,persons; per mille,"Basic Resident Register population and net migration rate of the wave year (2023 values carried to 2024-2025)",Basic Resident Register (e-Stat),no
+panel.csv,cagr_17_23,float,ratio per year,"Compound annual growth rate of resident population 2017 -> 2023 (-0.0015 = -0.15 %/yr); shrinking SMC if <= -0.0015",Basic Resident Register (e-Stat),yes
+panel.csv,cagr_13_23,float,ratio per year,Compound annual growth rate 2013 -> 2023,Basic Resident Register (e-Stat),no
+panel.csv,nmr_mean_18_23,float,per mille,Mean net migration rate 2018-2023,Basic Resident Register (e-Stat),no (standardised as nmr_z; not reported)
+municipal_means_2018_2023.csv,code5,string,,5-digit municipality code (zero-padded),Basic Resident Register (e-Stat),yes
+municipal_means_2018_2023.csv,Pop; In; Out,float,persons/year,"Mean resident population, in-migrants and out-migrants over 2018-2023 (source of the size and density indicators)",Basic Resident Register (e-Stat),yes
+municipal_annual.csv (optional),code5; Year; Population; Inflow; Outflow,,,"Annual series by municipality; if present, the 2018-2023 means are computed from it instead of municipal_means_2018_2023.csv",Basic Resident Register (e-Stat),optional
+large_cities.csv,category; name_ja; name_en,string,,"The 105 statutory large cities (designated, core, former special) matched on name_ja; the 23 Tokyo wards are matched on code 13101-13123 in the scripts",Ministry of Internal Affairs and Communications (2025 list),yes
