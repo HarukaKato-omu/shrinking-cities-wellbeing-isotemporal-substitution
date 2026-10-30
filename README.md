@@ -3,8 +3,7 @@
 Replication code for:
 
 > Kato, H. *Contextual time squeeze: Population decline and the well-being
-> price of an hour in Japan's shrinking small and medium-sized cities.*
-> *Habitat International*, under review.
+> price of an hour in Japan's shrinking small and medium-sized cities, under review.
 
 This repository contains the Python code used to estimate the within-person
 "price" of an hour in each of seven daily activities — the change in life
