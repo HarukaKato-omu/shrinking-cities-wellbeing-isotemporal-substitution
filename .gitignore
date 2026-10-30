@@ -1,0 +1,19 @@
+# Individual-level data are never committed. The only tracked files in data/ are the
+# schema, the statutory large-city list and the public municipal means.
+data/*
+!data/schema.csv
+!data/large_cities.csv
+!data/municipal_means_2018_2023.csv
+*.xlsx
+*.xlsm
+*.csv.bak
+
+# Generated outputs of run_all.py (any --outdir)
+output/
+results/
+
+# Python / notebook session files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
